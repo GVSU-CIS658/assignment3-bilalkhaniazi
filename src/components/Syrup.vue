@@ -1,8 +1,31 @@
 <template>
-  <div class="syrup"></div>
+  <div
+    v-if="props.type !== 'No Syrup'"
+    class="syrup"
+    :style="{ backgroundColor: getColor() }"
+  ></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+type Props = {
+  type: string;
+};
+
+const props = defineProps<Props>();
+
+const getColor = () => {
+  switch (props.type) {
+    case "Vanilla":
+      return "#f3e5ab";
+    case "Caramel":
+      return "#c68e17";
+    case "Hazelnut":
+      return "#8b5a2b";
+    default:
+      return "transparent";
+  }
+};
+</script>
 <style lang="scss" scoped>
 .syrup {
   transform: translateY(400%);
